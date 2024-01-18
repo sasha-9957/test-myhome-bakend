@@ -33,6 +33,6 @@ jobs:
             
             - name: "Push image to regestry"
               run: |
-                docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+                docker push ${{ ECR_REGISTRY }}/${{ ECR_REPOSITORY }}:latest
                
               
