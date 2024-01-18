@@ -5,8 +5,6 @@ on:
   push:
     branches:
      - dev
-env:
-    IMAGE_NAME: "myhome-dev"
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -27,9 +25,13 @@ jobs:
 
             - name: "Built image"
               env:
-                 ECR_REGISTRY: 198783273856.dkr.ecr.eu-central-1.amazonaws.com
-                 ECR_REPOSITORY: myhome
-              
+                 ECR_REGISTRY: ${{ secret.ECR_REGISTRY }}
+                 ECR_REPOSITORY: ${{ secret.ECR_REPOSITORY }}
               run: |
-                docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -f ./MyHomeNet/Dockerfile .
-                docker push $ECR_REGISTRY/$ECR_REPOSITORY
+                docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.run_number }} -t build -t $ECR_REGISTRY/$ECR_REPOSITORY:lstest -f ./MyHomeNet/Dockerfile .
+            
+            - name: "Push image to regestry"
+              run: |
+                docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.run_number }}
+                docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+              
