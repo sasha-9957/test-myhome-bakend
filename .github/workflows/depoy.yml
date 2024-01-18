@@ -10,7 +10,7 @@ env:
    ECR_REPOSITORY: myhome
    IMAGE_TAG: ${{ github.run_number }}
 
-   jobs:
+jobs:
     build:
         runs-on: ubuntu-latest
         steps:
