@@ -33,6 +33,7 @@ jobs:
             
             - name: "Push image to regestry"
               run: |
+                echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.run_number }}"
                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.run_number }}
                 #docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
                 echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
