@@ -9,7 +9,7 @@ env:
     IMAGE_NAME: "myhome-dev"
 jobs:
     build:
-        runts-on: ubuntu-latest
+        runs-on: ubuntu-latest
         step:
             - name: "Checkout repository"
               uses: actions/checkout@v4
