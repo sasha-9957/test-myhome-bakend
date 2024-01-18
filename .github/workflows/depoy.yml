@@ -16,4 +16,4 @@ jobs:
 
             - name: "Built image"
               run: |
-                docker built -t ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+                docker built -t ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }} -f /MyHomeNet/Dockerfile .
