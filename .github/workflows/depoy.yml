@@ -22,8 +22,8 @@ jobs:
                  aws-region: eu-central-1
 
             - name: Login to Amazon ECR
-                 id: login-ecr
-                 uses: aws-actions/amazon-ecr-login@v4
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v4
 
             - name: "Built image"
               env:
