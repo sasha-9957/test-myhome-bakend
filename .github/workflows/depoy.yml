@@ -16,4 +16,4 @@ jobs:
 
             - name: "Built image"
               run: |
-                docker built -t ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }} -f /MyHomeNet/Dockerfile .
+                docker build -t ${{ env.IMAGE_NAME }}:latest -f /MyHomeNet/Dockerfile .
