@@ -5,10 +5,6 @@ on:
   push:
     branches:
      - dev
-env:
-   ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-   ECR_REPOSITORY: myhome
-   IMAGE_TAG: ${{ github.run_number }}
 
 jobs:
     build:
@@ -37,6 +33,10 @@ jobs:
                 docker build -t build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./MyHomeNet/Dockerfile .
             
             - name: "Push image to regestry"
+              env:
+                 ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+                 ECR_REPOSITORY: myhome
+                 IMAGE_TAG: ${{ github.run_number }}
               run: |
                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
                
