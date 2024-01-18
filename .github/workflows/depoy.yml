@@ -27,12 +27,13 @@ jobs:
             - name: "Built image"
               env:
                  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                 ECR_REPOSITORY: "myhome"
+                 ECR_REPOSITORY: myhome
+                 IMAGE_TAG: ${{ github.run_number }}
               run: |
-                docker build -t build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest -f ./MyHomeNet/Dockerfile .
+                docker build -t build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f ./MyHomeNet/Dockerfile .
             
             - name: "Push image to regestry"
               run: |
-                docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+                docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
                
               
