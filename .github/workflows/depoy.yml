@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+     - dev
+env:
+    IMAGE_NAME: "myhome-dev"
+jobs:
+    build:
+        runts-on: ubuntu-latest
+        step:
+            - name: "Checkout repository"
+              uses: actions/checkout@v4
+
+            - name: "Built image"
+              run: |
+                docker built -t ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
