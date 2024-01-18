@@ -24,20 +24,13 @@ jobs:
               id: login-ecr
               uses: aws-actions/amazon-ecr-login@v2
 
-            - name: "Built image"
+            - name: "Built and push image"
               env:
                  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                  ECR_REPOSITORY: myhome
                  IMAGE_TAG: ${{ github.run_number }}
               run: |
                 docker build -t build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./MyHomeNet/Dockerfile .
-            
-            - name: "Push image to regestry"
-              env:
-                 ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                 ECR_REPOSITORY: myhome
-                 IMAGE_TAG: ${{ github.run_number }}
-              run: |
                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
                
               
