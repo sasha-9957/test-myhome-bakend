@@ -41,11 +41,12 @@ jobs:
                 username: ${{ secrets.REMOTE_USER }}
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 script: |
-                 export ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                 export ECR_REPOSITORY: "myhome-dev"
-                 export IMAGE_TAG: "latest"
-                 ls -la
-                 docker prune -af
-                 docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest
+                envs: |
+                  ECR_REGISTRY=$ECR_REGISTRY
+                  ECR_REPOSITORY=$ECR_REPOSITORY
+                  IMAGE_TAG=IMAGE_TAG
+                  ls -la
+                  docker prune -af
+                  docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest
                
               
