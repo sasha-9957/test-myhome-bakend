@@ -47,9 +47,9 @@ jobs:
                 envs: |
                   ECR_REGISTRY=$ECR_REGISTRY
                   ECR_REPOSITORY=$ECR_REPOSITORY
-                  IMAGE_TAG=IMAGE_TAG
+                  IMAGE_TAG=$IMAGE_TAG
                   ls -la
                   docker prune -af
-                  docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest
+                  docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
                
               
