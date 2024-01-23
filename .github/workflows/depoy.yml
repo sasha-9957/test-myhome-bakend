@@ -48,6 +48,8 @@ jobs:
                   ECR_REPOSITORY=$ECR_REPOSITORY
                   IMAGE_TAG=$IMAGE_TAG
                 script: |
-                  ls -la
+                  echo "ECR_REGISTRY: $ECR_REGISTRY"
+                  echo "ECR_REPOSITORY: $ECR_REPOSITORY"
+                  echo "IMAGE_TAG: $IMAGE_TAG"
                   docker system prune -af
                   docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
