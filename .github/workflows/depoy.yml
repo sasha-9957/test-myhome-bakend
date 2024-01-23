@@ -39,8 +39,9 @@ jobs:
               with:
                 host: ${{ secrets.REMOTE_HOST }}
                 username: ${{ secrets.REMOTE_USER }}
-                password: ${{ secrets.SSH_PRIVATE_KEY }}
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
                 script: |
+                 la -la
                  docker prune -af
                  docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest
                
