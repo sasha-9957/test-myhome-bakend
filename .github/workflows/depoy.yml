@@ -43,13 +43,7 @@ jobs:
                 host: ${{ secrets.REMOTE_HOST }}
                 username: ${{ secrets.REMOTE_USER }}
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
-                envs: |
-                  ECR_REGISTRY=${{ needs.Build.outputs.ECR_REGISTRY }}
-                  ECR_REPOSITORY=${{ needs.Build.outputs.ECR_REPOSITORY }}
-                  IMAGE_TAG=${{ needs.Build.outputs.IMAGE_TAG }}
                 script: |
-                  echo "ECR_REGISTRY: $ECR_REGISTRY"
-                  echo "ECR_REPOSITORY: $ECR_REPOSITORY"
-                  echo "IMAGE_TAG: $IMAGE_TAG"
+                  sudo systemctl stop docker-compose
                   docker system prune -af
-                  docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+                  sudo systemctl start docker-compose
