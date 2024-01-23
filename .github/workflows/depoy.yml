@@ -44,9 +44,9 @@ jobs:
                 username: ${{ secrets.REMOTE_USER }}
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 envs: |
-                  ECR_REGISTRY=$ECR_REGISTRY
-                  ECR_REPOSITORY=$ECR_REPOSITORY
-                  IMAGE_TAG=$IMAGE_TAG
+                  ECR_REGISTRY=${{ needs.Build.outputs.ECR_REGISTRY }}
+                  ECR_REPOSITORY=${{ needs.Build.outputs.ECR_REPOSITORY }}
+                  IMAGE_TAG=${{ needs.Build.outputs.IMAGE_TAG }}
                 script: |
                   echo "ECR_REGISTRY: $ECR_REGISTRY"
                   echo "ECR_REPOSITORY: $ECR_REPOSITORY"
